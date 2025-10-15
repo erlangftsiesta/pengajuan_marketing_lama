@@ -654,6 +654,34 @@
             <p>Tidak ada Bukti Absensi tersedia.</p>
         @endif
     </div>
+
+        <!-- Dokumen Rekomendasi -->
+    <div class="col-md-4">
+        <label for="" class="form-label">Dokumen Rekomendasi</label><br>
+        @if ($nasabah->pengajuan && $nasabah->pengajuan->dokumen_rekomendasi)
+            <a href="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_rekomendasi ) }}" target="_blank">
+                <img src="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_rekomendasi ) }}?t={{ time() }}"
+                     alt="Dokumen Rekomendasi" class="img-fluid rounded border"
+                     style="max-width: 100%; height: auto;">
+            </a>
+        @else
+            <p>Tidak ada Dokumen Rekomendasi tersedia.</p>
+        @endif
+    </div>
+
+        <!-- Dokumen Pendukung Tambahan -->
+    <div class="col-md-4">
+        <label for="bukti_absensi" class="form-label">Dokumen Pendukung Tambahan</label><br>
+        @if ($nasabah->pengajuan && $nasabah->pengajuan->dokumen_pendukung_tambahan)
+            <a href="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_pendukung_tambahan) }}" target="_blank">
+                <img src="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_pendukung_tambahan) }}?t={{ time() }}"
+                     alt="Dokumen Pendukung Tambahan" class="img-fluid rounded border"
+                     style="max-width: 100%; height: auto;">
+            </a>
+        @else
+            <p>Tidak ada Dokumen Pendukung Tambahan tersedia.</p>
+        @endif
+    </div>
 </div>
 
 <!-- Dokumen Penjamin -->

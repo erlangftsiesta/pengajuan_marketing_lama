@@ -360,8 +360,13 @@
                                             class="form-control" accept="image/*">
                                     </div>
                                      <div class="form-group">
-                                        <label for="dokumen_rekomendasi" class="form-label">Lampirkan dokumen rekomendasi</label>
+                                        <label for="dokumen_rekomendasi" class="form-label">Lampirkan Dokumen Rekomendasi</label>
                                         <input type="file" name="dokumen_rekomendasi" id="dokumen_rekomendasi"
+                                            class="form-control" accept="image/*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dokumen_pendukung_tambahan" class="form-label">Lampirkan Dokumen Pendukung Tambahan</label>
+                                        <input type="file" name="dokumen_pendukung_tambahan" id="dokumen_pendukung_tambahan"
                                             class="form-control" accept="image/*">
                                     </div>
                                 @endif

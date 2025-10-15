@@ -105,6 +105,7 @@ class PengajuanController extends Controller
             'foto_id_card_penjamin' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'foto_ktp_penjamin' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'dokumen_rekomendasi' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'dokumen_pendukung_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -256,6 +257,12 @@ class PengajuanController extends Controller
                 $dokumen_rekomendasiFile->storeAs($FolderDokumen, $dokumen_rekomendasiFileName, 'public');
                 $pengajuan->dokumen_rekomendasi = $dokumen_rekomendasiFileName;
             }
+            if ($request->hasFile('dokumen_pendukung_tambahan')) {
+                $dokumen_pendukung_tambahanFile = $request->file('dokumen_pendukung_tambahan');
+                $dokumen_pendukung_tambahanFileName = 'dokumen_pendukung_tambahan-' . $namaNasabah . '.' . $dokumen_pendukung_tambahanFile->getClientOriginalExtension();
+                $dokumen_pendukung_tambahanFile->storeAs($FolderDokumen, $dokumen_pendukung_tambahanFileName, 'public');
+                $pengajuan->dokumen_pendukung_tambahan = $dokumen_pendukung_tambahanFileName;
+            }
             $pengajuan->notes = $request->notes;
             $pengajuan->save();
 
@@ -380,6 +387,7 @@ class PengajuanController extends Controller
             'foto_id_card_penjamin' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'foto_ktp_penjamin' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'dokumen_rekomendasi' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'dokumen_pendukung_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -461,7 +469,20 @@ class PengajuanController extends Controller
                 $nasabah->dokumen_rekomendasi = $dokumen_rekomendasiFileName;
 
             $nasabah->dokumen_rekomendasi = $request->dokumen_rekomendasi;
-            $nasabah->save();
+                        $nasabah->save();
+            }
+
+            if ($request->hasFile('dokumen_pendukung_tambahan')) {
+                if ($nasabah->dokumen_pendukung_tambahan && Storage::exists($FolderDokumen . '/' . $nasabah->dokumen_pendukung_tambahan)){
+                    Storage::delete($FolderDokumen . '/' . $nasabah->dokumen_pendukung_tambahan);
+                }
+                $dokumen_pendukung_tambahanFile = $request->file('dokumen_pendukung_tambahan');
+                $dokumen_pendukung_tambahanFileName = 'dokumen_pendukung_tambahan-' . $namaNasabah . '.' . $rekeningFile->getClientOriginalExtension();
+                $dokumen_pendukung_tambahanFile->storeAs($FolderDokumen, $dokumen_pendukung_tambahanFileName, 'public');
+                $nasabah->dokumen_pendukung_tambahan = $dokumen_pendukung_tambahanFileName;
+
+            $nasabah->dokumen_pendukung_tambahan = $request->dokumen_pendukung_tambahan;
+                        $nasabah->save();
             }
 
             // Update data alamat

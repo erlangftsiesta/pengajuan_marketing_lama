@@ -130,6 +130,19 @@
             <small class="text-muted">Kosongkan jika tidak ingin mengganti file.</small>
         </div>
     </div>
+        <!-- Dokumen Pendukung Tambahan -->
+    <div class="form-group row mt-3">
+        <div class="col-md-6">
+            <label for="dokumen_pendukung_tambahan" class="form-label">File Dokumen Pendukung Tambahan</label>
+            @if ($nasabah->pengajuan->dokumen_pendukung_tambahan)
+                <div class="mb-2">
+                    <small>File saat ini: {{ $nasabah->pengajuan->dokumen_pendukung_tambahan }}</small>
+                </div>
+            @endif
+            <input type="file" id="dokumen_pendukung_tambahan" name="dokumen_pendukung_tambahan" class="form-control" accept="image/*">
+            <small class="text-muted">Kosongkan jika tidak ingin mengganti file.</small>
+        </div>
+    </div>
 @endif
 
 

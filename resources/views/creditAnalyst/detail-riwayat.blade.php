@@ -647,6 +647,34 @@
                                             <p>Tidak ada Bukti Absensi tersedia.</p>
                                         @endif
                                     </div>
+                                    <div class="col-md-4">
+                                    <label for="dokumen_rekomendasi" class="form-label">Dokumen Rekomendasi</label>
+                                    <br>
+                                    @if ($nasabah->pengajuan->dokumen_rekomendasi)
+                                        <a href="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_rekomendasi) }}"
+                                            target="_blank">
+                                            <img src="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_rekomendasi) }}?t={{ time() }}"
+                                                alt="Dokumen Rekomendasi" class="img-fluid"
+                                                style="max-width: 100%; height: auto;">
+                                        </a>
+                                    @else
+                                        <p>Tidak ada Dokumen Rekomendasi tersedia.</p>
+                                    @endif
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dokumen_pendukung_tambahan" class="form-label">Dokumen Pendukung Tambahan</label>
+                                    <br>
+                                    @if ($nasabah->pengajuan->dokumen_pendukung_tambahan)
+                                        <a href="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_pendukung_tambahan) }}"
+                                            target="_blank">
+                                            <img src="{{ asset('storage/dokumen_pendukung/' . $folderNasabah . '/' . $nasabah->pengajuan->dokumen_pendukung_tambahan) }}?t={{ time() }}"
+                                                alt="Dokumen Pendukung Tambahan" class="img-fluid"
+                                                style="max-width: 100%; height: auto;">
+                                        </a>
+                                    @else
+                                        <p>Tidak ada Dokumen Pendukung Tambahan tersedia.</p>
+                                    @endif
+                                </div>
                                 </div>
 
                                 @if ($nasabah->jaminan->penjamin == 'ada')
